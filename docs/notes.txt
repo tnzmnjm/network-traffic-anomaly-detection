@@ -1,1 +1,4 @@
-You can download the dataset from : https://www.kaggle.com/datasets/moradrawashdeh/attack-simulation-lab/
+- You can download the dataset from : https://www.kaggle.com/datasets/moradrawashdeh/attack-simulation-lab/
+- Each row in this CSV file corresponds to a single network packet, and each column represents a specific field extracted from that packet.
+- I will use the  "alert" feature to see how well the anomaly detection model is working. 
+-
