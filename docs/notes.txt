@@ -1,4 +1,54 @@
-- You can download the dataset from : https://www.kaggle.com/datasets/moradrawashdeh/attack-simulation-lab/
-- Each row in this CSV file corresponds to a single network packet, and each column represents a specific field extracted from that packet.
-- I will use the  "alert" feature to see how well the anomaly detection model is working.
--
+- You can download the dataset from : https://www.kaggle.com/datasets/
+moradrawashdeh/attack-simulation-lab/
+
+- Each row in this CSV file corresponds to a single network packet, and each
+column represents a specific field extracted from that packet.
+
+- I will use the  "alert" feature to see how well the anomaly detection model
+ is working.
+
+- I'm using a sample of a dataset to work with as I cannot load and work with
+ the whole dataset on my machine (the whole csv file is 2.68 GB)
+
+
+- see below the percentage of missing values in each column:
+0-20% Missing Values: ['ip.src', 'ip.dst', 'ip.len', 'ip.ttl', 'ip.flags', 'ip.frag_offset', 'ip.proto',
+ 'ip.version', 'ip.dsfield', 'ip.checksum', 'tcp.srcport', 'tcp.dstport', 'tcp.len', 'tcp.seq',
+ 'tcp.ack', 'tcp.flags', 'tcp.flags.syn', 'tcp.flags.ack', 'tcp.flags.fin', 'tcp.flags.reset',
+ 'tcp.window_size', 'tcp.checksum', 'tcp.stream']
+
+20-40% Missing Values: []
+
+40-60% Missing Values: []
+
+60-80% Missing Values: ['http.request.method', 'http.request.uri', 'http.request.version',
+ 'http.request.full_uri', 'http.response.code', 'http.user_agent', 'http.content_length_header',
+  'http.content_type', 'http.host', 'http.connection']
+
+80-100% Missing Values: ['udp.srcport', 'udp.dstport', 'udp.length', 'udp.checksum',
+ 'icmp.type', 'icmp.code', 'icmp.checksum', 'http.cookie', 'http.referer', 'http.location',
+  'http.authorization', 'dns.qry.name', 'dns.qry.type', 'dns.qry.class', 'dns.flags.response',
+
+ The sample has more TCP packets than the UDP:
+
+ 0-20% Missing Values --> these are the common features for each packet (Layer 3 of the OSI Network layer).
+  In other words, each packet has all/the majority of these features regardless of the application protocol
+   (HTTP, DNS,POP3, SMTP,..)
+ 60-80% Missing Values --> These are http related, meaning the majprity of packets are not related to the
+  http protocol
+ 80-100% Missing Values --> these are udp, DNS, pop, imap,smtp related and one packet cannot have values
+  for all of these.
+
+TCP vs. UDP: If a packet is a TCP packet, it won't have UDP-specific features and vice versa.
+ Hence, the missing values in these cases aren't really 'missing' in the traditional sense;
+ they're simply not applicable.
+
+- At this stage I would like to simplify the problem as much as I can. Due to my domain knowledge and considering the insight I have got from the dataset, I will be choosing tcp-related features listed below:
+    - tcp.flags.syn
+    - tcp.window_size
+    - tcp.len
+    - tcp.srcport
+    - tcp.dstport
+
+and as long as my model gives me 50% of accuracy,
+I'm glad. I can always come back and use more features.
