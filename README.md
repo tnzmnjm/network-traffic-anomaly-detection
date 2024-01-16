@@ -3,7 +3,8 @@ This project implements a network traffic anomaly detection mechanism designed t
 
 ## Description
 The repository includes Exploratory Data Analysis (EDA), pre-processing pipelines, GMM (Gaussian Mixture Models), Isolation Forest, and evaluation metrics to assess performance. 
-One of the machines is a Normal Windows PC which has provided benign packets representing normal user activity on a network, the second is the OWASP Broken Web Application which hosts a wide variety of intentionally insecure web applications, and Kali Machine which is used as the primary source of attack traffic in the lab setup, leveraging Kali's extensive set of penetration testing and attack tools.
+
+One of the machines is a Normal Windows PC which has provided benign packets representing normal user activity on a network, the second is the OWASP Broken Web Application which hosts a wide variety of intentionally insecure web applications, and a Kali Machine which is used as the primary source of attack traffic in the lab setup, leveraging Kali's extensive set of penetration testing and attack tools.
 
 
 ## Dataset
